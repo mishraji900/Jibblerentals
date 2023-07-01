@@ -3,7 +3,14 @@ import { BikeCard, CustomFilter, Hero, SearchBar } from "@/components";
 import { fuels } from "@/constants";
 import { fetchBikes } from "@/utils";
 
-export default async function Home({ searchParams }) {
+interface SearchParams {
+  manufacturer?: string;
+  year?: number;
+  fuel?: string;
+  limit?: number;
+  model?: string;
+}
+export default async function Home({ searchParams }: { searchParams: SearchParams }) {
   const allBikes = await fetchBikes({
     manufacturer: searchParams.manufacturer||'',
     year: searchParams.year||2021,
